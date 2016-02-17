@@ -1,0 +1,5 @@
+---
+    - hosts: box
+      remote_user: root
+      roles:
+          - openvpn

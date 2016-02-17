@@ -1,0 +1,36 @@
+---
+    - name: install system packages
+      sudo: yes
+      apt: name={{ item }} state=present update_cache=yes
+      with_items:
+          - build-essential
+          - libssl-dev
+          - libncurses5-dev
+          - unzip
+          - gawk
+          - git-core
+          - subversion 
+          - mercurial 
+
+    - name: Clone repo
+      git: repo=git://git.openwrt.org/openwrt.git dest=~/openwrt clone=yes update=yes accept_hostkey=yes
+
+    - name: Download and install all available "feeds"
+      shell: ./scripts/feeds update -a
+      args:
+        chdir: ~/openwrt/
+
+    - name: Install all available "feeds"
+      shell: ./scripts/feeds update -a
+      args:
+        chdir: ~/openwrt/
+
+    - name: Make defconfig
+      shell: make defconfig
+      args:
+        chdir: ~/openwrt/
+
+    - name: Make prereq
+      shell: make prereq
+      args:
+        chdir: ~/openwrt/
