@@ -25,6 +25,11 @@
       args:
         chdir: ~/openwrt/
 
+    - name: Install all available "feeds"
+      shell: ./scripts/feeds install -a
+      args:
+        chdir: ~/openwrt/
+
     - name: Make defconfig
       shell: make defconfig
       args:
