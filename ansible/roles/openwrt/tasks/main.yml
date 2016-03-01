@@ -11,6 +11,7 @@
           - git-core
           - subversion 
           - mercurial 
+          - git
 
     - name: Clone repo
       git: repo=git://git.openwrt.org/openwrt.git dest=~/openwrt clone=yes update=yes accept_hostkey=yes
